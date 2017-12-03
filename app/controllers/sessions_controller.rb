@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to "/auth/#{params[:provider]}"
+    if Rails.env.development?
+      session[:user_id] = User.first
+      redirect_to root_url, notice: I18n.t('session.created')
+    else
+      redirect_to "/auth/#{params[:provider]}"
+    end
   end
 
   def create
