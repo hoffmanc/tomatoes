@@ -1,0 +1,40 @@
+<h1><%= t('invoice.edit') %></h1>
+<%= render "subtitle" %>
+
+<%= bootstrap_form_for @invoice, layout: :horizontal do |f| %>
+  <%= f.alert_message t('form_alert_message') %>
+
+    <% @invoice_entries_by_date.each do |date, entries| %>
+      <div id="date_<%= date.strftime("%Y_%m_%d") %>">
+        <h3><%= l(date, format: :mon_dnum) %></h3>
+        <ul class="list-group">
+          <% entries.each do |entry| %>
+            <li class="list-group-item invoice-entry-<%= entry.tags.join('-').gsub(/\s+/, '-') %>">
+              <%= f.fields_for :invoice_entries, entry do |ef| %>
+                <%= ef.hidden_field :id %>
+                <p>
+                  <%= ef.object.tags.join(", ") %>
+                </p>
+                <div class="row">
+                  <div class="col-md-3">
+                    <%= ef.select :date, @invoice.period_range %><br/>
+                  </div>
+                  <div class="col-md-3">
+                    <%= ef.number_field :hours, step: 0.25 %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= ef.text_area :description %>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <%= f.submit %>
+<% end %>
+
+<h3>Total Hours: <%= @invoice.invoice_entries.sum(:hours) %>
+  <small>(does not include edits)</small>
+</h3>

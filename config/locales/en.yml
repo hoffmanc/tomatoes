@@ -1,4 +1,7 @@
 en:
+  date:
+    formats:
+      mon_dnum: '%b %d'
   app_name: Tomatoes
   default_description: >
     Pomodoro™ time tracker. Stay focused, be productive, track everything.
@@ -140,6 +143,9 @@ en:
       tomato:
         started_at: Started at
         tags: Tags
+      invoice:
+        period_starts_on: Period Starts On
+        period_ends_on: Period Ends On
   project:
     new: New project
     edit: Edit project
@@ -172,6 +178,10 @@ en:
     deleted: Signed out.
     unexpected_error: Unexpected error
     failure: Authentication error. %{error_message}.
+  invoice:
+    edit: Edit Invoice
+    period: Period
+    period_delimiter: to
   errors:
     messages:
       must_not_overlap: Must not overlap saved tomatoes, please wait %{limit}

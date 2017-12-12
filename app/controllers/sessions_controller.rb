@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    if Rails.env.development?
+    if Rails.env.development? || Rails.env.test?
       session[:user_id] = User.first
       redirect_to root_url, notice: I18n.t('session.created')
     else

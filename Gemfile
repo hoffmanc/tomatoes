@@ -66,6 +66,8 @@ group :test do
   gem 'minitest-reporters'
   gem 'mocha', require: false
   gem 'simplecov', require: false
+  gem 'capybara-webkit'
+  gem 'launchy'
 end
 
 group :development do

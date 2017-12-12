@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
 
   resources :projects
+  resources :invoices, only: [:new, :create, :edit, :update]
 
   resources :statistics, only: :index do
     collection do

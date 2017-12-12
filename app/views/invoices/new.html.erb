@@ -1,0 +1,11 @@
+<h1><%= t('invoice.new') %></h1>
+
+<%= bootstrap_form_for @invoice, layout: :horizontal do |f| %>
+  <%= f.alert_message t('form_alert_message') %>
+
+  <%= f.text_field :period_starts_on %>
+  <%= f.text_field :period_ends_on %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to t('back'), root_path %>
